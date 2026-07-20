@@ -1,0 +1,32 @@
+body{
+    background: #F0EEE6
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5%;
+   
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo img{
+    width: 30px;
+    height: 30px;
+    margin-right: 25px;
+}
+.logo h1{
+    font-size: 24px;
+    
+    
+}
+.introduction {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 5%;
+    text-align: center;
+    align-items: center;
+}
