@@ -1,65 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smriti Notes — your notebook, reimagined</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
 
-    <title>Smriti</title>
+:root{
+  --paper:#fffdf7;
+  --paper2:#f7edda;
+  --desk:#f4dfbd;
+  --ink:#272332;
+  --muted:#665e70;
+  --pink:#ff5f91;
+  --yellow:#ffe66d;
+  --mint:#bcefbf;
+  --blue:#b9e4ff;
+  --lav:#d9c5ff;
+  --peach:#ffc9a8;
+  --green:#72d59b;
+  --dark:#15171c;
+  --dark2:#20232a;
+  --dark3:#2b2e36;
+  --shadow:0 22px 50px rgba(83,57,25,.18);
+  --line:rgba(65,50,34,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:Nunito,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(255,255,255,.9),transparent 28%),
+    radial-gradient(circle at 85% 55%,rgba(255,236,195,.7),transparent 30%),
+    repeating-linear-gradient(0deg,rgba(100,70,30,.025) 0 1px,transparent 1px 5px),
+    var(--desk);
+}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+button{cursor:pointer}
+h1,h2,h3{font-family:Fredoka,sans-serif;margin:0;line-height:1.05}
+.hand{font-family:Caveat,cursive}
+.container{width:min(1200px,92vw);margin:auto}
 
-    <link rel="stylesheet" href="styles.css">
+/* NAV */
+nav{
+  position:fixed;z-index:1000;top:0;left:0;right:0;height:72px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 4vw;
+  background:rgba(255,250,238,.82);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(80,60,30,.08);
+}
+.logo{display:flex;align-items:center;gap:10px;font-family:Fredoka;font-size:1.35rem;font-weight:700}
+.logo-note{width:31px;height:35px;background:var(--yellow);transform:rotate(-7deg);box-shadow:3px 4px 7px #9d7d4338;position:relative}
+.logo-note:before{content:"♡";font-family:Caveat;font-size:22px;position:absolute;left:7px;top:2px}
+.logo em{font-family:Caveat;color:var(--pink);font-size:1.7rem;font-style:normal}
+.navlinks{display:flex;gap:30px;font-weight:700;font-size:.92rem}
+.navlinks a:hover{color:var(--pink)}
+.navcta{background:var(--pink);color:#fff;padding:12px 22px;border-radius:30px;box-shadow:0 6px 14px #ff5f9140}
+@media(max-width:760px){.navlinks{display:none}nav{height:62px}.navcta{padding:9px 15px}}
 
-    
-    <link rel="icon" type="image/png" href="favicon.png">
+/* HERO NOTEBOOK */
+.hero{padding:110px 0 40px}
+.notebook{
+  position:relative;width:min(1110px,94vw);margin:auto;
+  min-height:590px;display:grid;grid-template-columns:1fr 1fr;
+  background:var(--paper);
+  border-radius:12px 18px 18px 12px;
+  box-shadow:0 38px 65px rgba(72,49,24,.25),0 4px 10px rgba(72,49,24,.15);
+  overflow:visible;
+}
+.notebook:before{
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:28px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,#a8875d22,rgba(75,55,31,.12),#fff8,transparent);
+  z-index:4;pointer-events:none;
+}
+.page{
+  position:relative;padding:62px 70px;
+  background:
+    repeating-linear-gradient(to bottom,transparent 0 31px,var(--line) 32px 33px),
+    linear-gradient(90deg,#fffefa,#fdf7e9);
+}
+.page:first-child{border-radius:12px 0 0 18px}
+.page:last-child{border-radius:0 18px 18px 0}
+.rings{position:absolute;left:-13px;top:26px;bottom:26px;width:26px;display:flex;flex-direction:column;justify-content:space-around;z-index:10}
+.ring{height:42px;width:20px;border:4px solid #8a8a87;border-right-color:transparent;border-radius:50%;box-shadow:1px 2px 2px #0002}
+.tabs{position:absolute;left:-39px;top:105px;display:flex;flex-direction:column;gap:7px}
+.tab{width:72px;height:45px;border-radius:9px 0 0 9px;display:grid;place-items:center;font-family:Caveat;font-size:1rem;box-shadow:0 5px 10px #0001}
+.tab:nth-child(1){background:#ffe58b}.tab:nth-child(2){background:#ff9fbc}.tab:nth-child(3){background:#c8ee9c}.tab:nth-child(4){background:#9ddfff}.tab:nth-child(5){background:#d9c1ff}
+.kicker{font-family:Caveat;font-size:1.45rem;color:#ee4c77;transform:rotate(-2deg);margin-bottom:18px}
+.hero h1{font-size:clamp(4rem,8vw,7rem);letter-spacing:-3px;margin-bottom:15px}
+.hero h1 span{color:var(--pink);text-shadow:0 7px 0 var(--yellow)}
+.hero h1 small{display:block;font-family:Caveat;font-size:2rem;letter-spacing:0;color:#4b4454;text-shadow:none}
+.hero-copy{font-size:1.12rem;line-height:1.7;max-width:430px}
+.highlight{
+  display:inline;background:linear-gradient(transparent 40%,#ffe34d 40% 83%,transparent 83%);
+  font-family:Caveat;font-weight:700;font-size:1.35em
+}
+.under{border-bottom:3px solid var(--pink);font-family:Caveat;font-size:1.35em}
+.hero-sticky{
+  position:absolute;left:28px;bottom:35px;width:165px;min-height:115px;padding:17px;
+  background:#ffc5d6;transform:rotate(-5deg);box-shadow:0 14px 20px #68451e2b;
+  font-family:Caveat;font-size:1.2rem;z-index:6;
+}
+.hero-sticky:after,.sticky:after{content:"";position:absolute;right:0;bottom:0;border-style:solid;border-width:0 0 20px 20px;border-color:transparent transparent #9a6f3820 transparent}
+.arrow{position:absolute;left:205px;bottom:83px;font-family:Caveat;font-size:3rem;transform:rotate(-8deg)}
+.hero-right h2{font-family:Caveat;font-size:2.5rem;margin-bottom:14px}
+.date{position:absolute;right:65px;top:55px;font-family:Caveat;font-size:1.4rem;border-bottom:2px solid var(--pink)}
+.example{
+  font-size:1.05rem;line-height:1.8;max-width:440px;margin-top:20px
+}
+.example .hl{background:linear-gradient(transparent 30%,#ffe64d 30% 80%,transparent 80%);font-family:Caveat;font-size:1.35rem;font-weight:700}
+.formula{font-family:Caveat;font-size:1.55rem;border:2px solid #444;padding:5px 14px;display:inline-block;margin:16px 0;transform:rotate(-1deg)}
+.doodle{font-family:Caveat;font-size:2rem;color:#333;transform:rotate(5deg)}
+.corner-sticky{
+  position:absolute;right:-10px;top:110px;width:150px;min-height:130px;padding:18px;background:#c7efa0;
+  transform:rotate(4deg);box-shadow:0 14px 22px #68451e2b;font-family:Caveat;font-size:1.25rem
+}
+.pencil,.pen{
+  position:absolute;height:14px;border-radius:10px;bottom:-37px;z-index:5;box-shadow:0 4px 7px #0003
+}
+.pencil{width:230px;right:185px;background:linear-gradient(#e8c99b,#fff2d2,#c89e63);transform:rotate(-1deg)}
+.pencil:before{content:"";position:absolute;left:-20px;top:0;border-style:solid;border-width:7px 20px 7px 0;border-color:transparent #d9b27d transparent transparent}
+.pen{width:190px;right:30px;background:#282b33;transform:rotate(1deg)}
+.pen:after{content:"";position:absolute;right:-16px;top:2px;border-style:solid;border-width:5px 16px 5px 0;border-color:transparent #aaa transparent transparent}
+@media(max-width:850px){
+  .notebook{grid-template-columns:1fr}.notebook:before{display:none}.hero-right{display:none}
+  .page:first-child{border-radius:12px}.hero-sticky{left:20px}.arrow{display:none}.hero h1{font-size:4.5rem}
+}
+
+/* SECTION */
+.section{padding:80px 0}
+.section-title{text-align:center;margin-bottom:34px}
+.section-title h2{font-size:clamp(2.2rem,4vw,3.5rem)}
+.section-title p{font-size:1.08rem;color:var(--muted)}
+.demo-wrap {
+  width: min(100%, 1400px);
+  margin: 0 auto 35px;
+
+  padding: clamp(18px, 3vw, 40px);
+  box-sizing: border-box;
+
+  background: rgba(255, 249, 233, .7);
+  border: 2px solid #7b5e3325;
+  border-radius: 20px;
+
+  box-shadow: 0 25px 60px #6b49251c;
+}
+.demo-head{display:flex;justify-content:center;gap:10px;margin-bottom:14px}
+.theme-btn{border:1px solid #cbb78f;background:#fff5d8;padding:9px 18px;border-radius:30px;font-weight:800}
+.theme-btn.active{background:#ffe27b}
+.app{
+  display:grid;grid-template-columns:180px 1fr 190px;min-height:520px;border-radius:13px;overflow:hidden;
+  box-shadow:0 12px 30px #48331f33;background:#fff
+}
+.sidebar{padding:22px 16px;background:#fbf7ed;border-right:1px solid #0001}
+.appname{font-family:Caveat;font-size:1.5rem;font-weight:700;margin-bottom:18px}
+.newnote{background:var(--pink);color:white;border:0;border-radius:9px;padding:10px;width:100%;font-weight:800;margin-bottom:15px}
+.sideitem{padding:9px 8px;border-radius:7px;font-size:.82rem;margin:3px 0}
+.sideitem.active{background:#ffe6ef;color:#d93668;font-weight:800}
+.sidegroup{font-size:.68rem;text-transform:uppercase;color:#8d8490;margin:17px 8px 5px}
+.canvas{
+  position:relative;padding:48px 30px 25px;overflow:hidden;
+  background-color:#fffdf7;
+  background-image:radial-gradient(#b8a98e45 1px,transparent 1px);background-size:20px 20px
+}
+.canvasbar{position:absolute;left:22px;right:22px;top:12px;display:flex;justify-content:space-between;font-size:.8rem;font-weight:800}
+.toolbar{display:flex;gap:7px}.tool{width:25px;height:25px;border:1px solid #bbb;background:#fff;border-radius:5px}
+.sticky{
+  position:absolute;width:155px;min-height:135px;padding:17px 15px;
+  box-shadow:0 14px 21px #503b232b;font-family:Caveat;font-weight:700;font-size:1.15rem;
+  cursor:pointer;transition:.25s;user-select:none
+}
+.sticky:hover{transform:translateY(-8px) rotate(0deg)!important;box-shadow:0 22px 30px #503b2340;z-index:20}
+.s1{left:7%;top:18%;background:#ffe56e;transform:rotate(-3deg)}
+.s2{left:31%;top:13%;background:#ffb5cb;transform:rotate(4deg)}
+.s3{left:57%;top:20%;background:#bde8ff;transform:rotate(-2deg)}
+.s4{left:18%;top:57%;background:#d6c0ff;transform:rotate(3deg)}
+.s5{left:45%;top:55%;background:#ffe2a9;transform:rotate(-4deg)}
+.s6{left:72%;top:58%;background:#c8efa4;transform:rotate(5deg)}
+.sticky small{display:block;font-family:Nunito;font-size:.68rem;margin-top:8px}
+.pin{position:absolute;top:-8px;left:50%;width:11px;height:11px;border-radius:50%;background:#ed5b65;box-shadow:0 3px 5px #0004}
+.connectors{position:absolute;inset:0;pointer-events:none}
+.inspector{padding:20px 14px;background:#fff;border-left:1px solid #0001}
+.inspector h3{font-family:Nunito;font-size:.95rem;margin-bottom:17px}
+.color-row{display:flex;gap:7px;margin:10px 0 17px}.color{width:19px;height:19px;border-radius:50%;border:1px solid #999}
+.switch{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;margin:15px 0}
+.toggle{width:35px;height:20px;background:#65cc8d;border-radius:20px;padding:2px}.toggle:after{content:"";display:block;width:16px;height:16px;border-radius:50%;background:white;margin-left:15px}
+.inspectline{font-size:.72rem;padding:10px 0;border-bottom:1px solid #0001}
+.dark .app{background:var(--dark);color:#eee}
+.dark .sidebar,.dark .inspector{background:#1b1d23;border-color:#ffffff12}
+.dark .canvas{background-color:#202329;background-image:radial-gradient(#ffffff19 1px,transparent 1px)}
+.dark .canvasbar{color:#eee}.dark .tool{background:#2b2e36;color:#fff;border-color:#ffffff20}
+.dark .sideitem{color:#bbb}.dark .sideitem.active{background:#3a2730;color:#ff91b1}
+.dark .inspector{color:#eee}.dark .inspectline{border-color:#ffffff13}
+.dark .demo-wrap{background:#e9d8b8}
+.dark .theme-btn{background:#f5e5c1}
+.dark .appname{color:#fff}
+@media(max-width:900px){.app{grid-template-columns:145px 1fr}.inspector{display:none}}
+@media(max-width:650px){.app{grid-template-columns:1fr}.sidebar{display:none}.canvas{min-height:520px}.sticky{width:125px;min-height:115px;font-size:1rem}}
+
+/* FEATURES */
+.feature-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.feature{
+  background:#fff8e9;padding:22px 17px;min-height:180px;border-radius:14px;
+  border:1px solid #87653518;box-shadow:0 9px 18px #68451e12;transition:.25s
+}
+.feature:hover{transform:translateY(-7px) rotate(-1deg);box-shadow:0 18px 30px #68451e25}
+.feature-icon{width:45px;height:45px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;font-size:1.35rem}
+.feature:nth-child(1) .feature-icon{background:#ffe56e}.feature:nth-child(2) .feature-icon{background:#ffb5cb}
+.feature:nth-child(3) .feature-icon{background:#bde8ff}.feature:nth-child(4) .feature-icon{background:#c8efa4}.feature:nth-child(5) .feature-icon{background:#d6c0ff}
+.feature h3{font-size:1.05rem;margin-bottom:7px}.feature p{font-size:.78rem;line-height:1.55;color:var(--muted)}
+@media(max-width:1000px){.feature-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:600px){.feature-grid{grid-template-columns:1fr 1fr}}
+
+/* CTA */
+.cta{
+  width:min(1050px,92vw);margin:40px auto 100px;padding:65px 30px;text-align:center;
+  background:var(--paper);border-radius:18px;box-shadow:var(--shadow);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 35px,#6c5b3a12 36px 37px)
+}
+.cta h2{font-family:Caveat;font-size:3rem}.cta h2 span{color:var(--pink)}
+.cta p{color:var(--muted);margin:12px auto 24px}
+.email{display:flex;max-width:480px;margin:auto;background:white;padding:6px;border-radius:40px;box-shadow:0 7px 18px #0002}
+.email input{border:0;outline:0;padding:11px 15px;flex:1;background:transparent}
+.email button{border:0;background:var(--pink);color:#fff;border-radius:30px;padding:11px 19px;font-weight:800}
+footer{padding:25px 5vw 40px;display:flex;justify-content:space-between;font-size:.8rem;color:#756b60}
+@media(max-width:600px){footer{flex-direction:column;gap:10px}.email{flex-direction:column;background:transparent;box-shadow:none}.email input,.email button{background:#fff;margin:3px;border-radius:30px}}
+
+/* animation */
+.reveal{opacity:0;transform:translateY(22px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Logo">
-            <h1>Smriti</h1>
+
+<nav>
+  <a class="logo" href="#"><span class="logo-note"></span>Smriti <em>Notes</em></a>
+  <div class="navlinks">
+    <a href="#home">Home</a><a href="#features">Features</a><a href="#demo">Demo</a><a href="#about">About</a><a href="#pricing">Pricing</a>
+  </div>
+  <a class="navcta" href="#coming">Coming Soon ☆</a>
+</nav>
+
+<main id="home">
+<section class="hero">
+  <div class="notebook">
+    <div class="rings">
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+    </div>
+    <div class="tabs">
+      <div class="tab">Notes</div><div class="tab">Canvas</div><div class="tab">Ideas</div><div class="tab">Tags</div><div class="tab">Search</div>
+    </div>
+
+    <article class="page">
+      <div class="kicker">your notebook, reimagined ♡</div>
+      <h1>Smriti<br><span>Notes</span><small>Where ideas stick,<br>and thoughts connect.</small></h1>
+      <p class="hero-copy">
+        Capture important things inside your notes, turn them into
+        <span class="highlight">sticky papers</span>, pin them to your canvas,
+        and <span class="under">jump back</span> anytime.
+      </p>
+      <div class="hero-sticky">☆ Highlights<br>• Stick<br>• Connect<br>• Never forget</div>
+      <div class="arrow">↗</div>
+    </article>
+
+    <article class="page hero-right">
+      <div class="date">24 May 2026</div>
+      <h2>Example Note</h2>
+      <p class="example">
+        <span class="hl">Pythagoras Theorem</span><br><br>
+        In a right angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.
+      </p>
+      <div class="formula">c² = a² + b²</div>
+      <div class="doodle">△ &nbsp; a² + b² = c² &nbsp; ✓</div>
+      <p class="hand" style="font-size:1.6rem;margin-top:16px">To Remember:</p>
+      <p class="example" style="font-size:.95rem">• Identify the right angle<br>• Apply the formula<br>• Simplify the result</p>
+      <div class="corner-sticky">Important!<br><br>• Formula<br>• Practice more<br>• Review later ☆</div>
+    </article>
+
+    <div class="pencil"></div><div class="pen"></div>
+  </div>
+</section>
+
+<section class="section" id="demo">
+  <div class="section-title reveal">
+    <div class="kicker">see it in action ♡</div>
+    <h2>Real Notes. Real Sticky Experience.</h2>
+    <p>Write naturally. Highlight anything. Pin it to your canvas. Connect your ideas.</p>
+  </div>
+
+  <div class="demo-head">
+    <button class="theme-btn active" data-theme="light">☀ Light Theme</button>
+    <button class="theme-btn" data-theme="dark">◐ Dark Theme</button>
+  </div>
+
+  <div class="demo-wrap">
+    <div class="app light" id="notesApp">
+      <aside class="sidebar">
+        <div class="appname">Smriti Notes</div>
+        <button class="newnote">＋ New Note</button>
+        <div class="sideitem">▣ All Notes <span style="float:right">24</span></div>
+        <div class="sideitem">☆ Pinned <span style="float:right">8</span></div>
+        <div class="sideitem active">▧ Canvas <span style="float:right">12</span></div>
+        <div class="sideitem">◇ Collections</div>
+        <div class="sideitem"># Tags</div>
+        <div class="sidegroup">Collections</div>
+        <div class="sideitem">📗 Maths <span style="float:right">6</span></div>
+        <div class="sideitem">📘 DSA <span style="float:right">5</span></div>
+        <div class="sideitem">📙 Projects <span style="float:right">4</span></div>
+      </aside>
+
+      <div class="canvas" id="canvas">
+        <div class="canvasbar">
+          <span>My Canvas⌄</span>
+          <span class="toolbar"><button class="tool">↶</button><button class="tool">↷</button><button class="tool">⌕</button><button class="tool">＋</button><button class="tool">●</button><button class="tool">✎</button></span>
+          <span>⌕ &nbsp; <b style="background:#ff5f91;color:#fff;padding:5px 9px;border-radius:6px">Share</b> &nbsp; 👤</span>
         </div>
-        <div class="header-items">
-            <button class="login-button">Login</button>
 
+        <svg class="connectors" viewBox="0 0 700 500" preserveAspectRatio="none">
+          <path d="M150 170 C220 140 220 120 290 150" stroke="#555" stroke-width="2" fill="none" stroke-dasharray="6 6"/>
+          <path d="M310 190 C390 240 400 160 455 190" stroke="#ff5f91" stroke-width="2" fill="none" stroke-dasharray="6 6"/>
+          <path d="M210 350 C260 300 340 350 420 320" stroke="#65bd78" stroke-width="2" fill="none" stroke-dasharray="6 6"/>
+        </svg>
+
+        <div class="sticky s1" data-note="Study Plan">
+          <span class="pin"></span><b>Study Plan</b>
+          <small>☑ TOC<br>☑ DSA<br>☐ OS<br>☐ DBMS</small>
+          <small>☆ Highlighted from note</small>
         </div>
+        <div class="sticky s2" data-note="Project Idea">
+          <span class="pin"></span><b>Project Idea</b>
+          <small>A web app that helps students organize notes smartly.</small>
+          <small>↗ Connected note</small>
+        </div>
+        <div class="sticky s3" data-note="Maths Formula">
+          <span class="pin"></span><b>Maths Formula</b>
+          <small>c² = a² + b²</small>
+          <small>△ diagram inside note</small>
+        </div>
+        <div class="sticky s4" data-note="DSA Topics">
+          <span class="pin"></span><b>DSA Topics</b>
+          <small>• Arrays<br>• Linked List<br>• Trees<br>• Graphs</small>
+        </div>
+        <div class="sticky s5" data-note="Quote">
+          <span class="pin"></span><b>Quote</b>
+          <small>“The only way to do great work is to love what you do.”</small>
+          <small>— Steve Jobs</small>
+        </div>
+        <div class="sticky s6" data-note="Remember">
+          <span class="pin"></span><b>Remember</b>
+          <small>• Call Anna<br>• Submit report<br>• Buy highlighters</small>
+        </div>
+      </div>
 
-    </header>
-    <hr>
-    <main class="main-content">
-        <section class="introduction">
-            <div class="intro-text">
-                
-                <h2>Scribble smarter</h2>
-                <p>Hand when it flows.<br>Type when it matters.</p>
-            </div>
-        </section>
-        <section>
-            <div class="horizontal-items">
-                <div>feature 1</div>
-                <div>feature 2</div>
-                <div>feature 3</div>
-                <div>feature 4</div>
-                <div>feature 5</div>
-                <div>feature 6</div>
-                
+      <aside class="inspector">
+        <h3>Study Plan <span style="float:right;color:#f39">☆</span></h3>
+        <div class="color-row"><i class="color" style="background:#ffe56e"></i><i class="color" style="background:#bde8ff"></i><i class="color" style="background:#ffb5cb"></i><i class="color" style="background:#c8efa4"></i><i class="color" style="background:#d6c0ff"></i></div>
+        <div class="switch">Pin to Canvas <span class="toggle"></span></div>
+        <div class="inspectline">Add to Collection <b style="float:right">Study →</b></div>
+        <div class="inspectline">Add Reminder <b style="float:right">None →</b></div>
+        <div class="inspectline">Add Link <b style="float:right">0 links →</b></div>
+        <div class="inspectline">Backlinks <b style="float:right">2 notes</b></div>
+        <div class="inspectline" style="color:#e84b54;margin-top:10px">♢ Delete</div>
+      </aside>
+    </div>
+  </div>
 
+  <p class="hand" style="text-align:center;font-size:1.6rem">Click a sticky → it can take you back to the exact note where it came from.</p>
+</section>
 
-            </div>
-        </section>
-        <section>
-            <div class="vertical-items">
-                <div>feature 1</div>
-                <div>feature 2</div>
-                <div>feature 3</div>
-                <div>feature 4</div>
-                <div>feature 5</div>
-                <div>feature 6</div>
-                
+<section class="section" id="features">
+  <div class="section-title reveal">
+    <div class="kicker">the pencil case ✎</div>
+    <h2>Everything feels connected.</h2>
+    <p>Not another generic notes app — a workspace built around the way ideas actually move.</p>
+  </div>
+  <div class="feature-grid container">
+    <article class="feature"><div class="feature-icon">📌</div><h3>Sticky Canvas</h3><p>Pin notes, ideas and highlights on an infinite canvas.</p></article>
+    <article class="feature"><div class="feature-icon">🗒️</div><h3>Sticky Papers</h3><p>Add interactive sticky papers anywhere on your canvas.</p></article>
+    <article class="feature"><div class="feature-icon">🖍️</div><h3>In-Note Highlights</h3><p>Highlight important lines and turn them into sticky papers.</p></article>
+    <article class="feature"><div class="feature-icon">⌕</div><h3>One Click Jump</h3><p>Click a sticky to jump directly back to its original note.</p></article>
+    <article class="feature"><div class="feature-icon">🔗</div><h3>Organize Better</h3><p>Collections, tags and backlinks keep everything connected.</p></article>
+  </div>
+</section>
 
+<section class="cta" id="coming">
+  <div class="kicker">something is being written...</div>
+  <h2>Your ideas deserve a beautiful home.<br><span>Coming Soon!</span></h2>
+  <p>Smriti Notes is on its way. Stay tuned for something that feels like your favorite notebook.</p>
+  <form class="email" onsubmit="event.preventDefault();this.querySelector('button').textContent='You’re on the list ✓'">
+    <input type="email" required placeholder="Enter your email">
+    <button>♧ Notify Me</button>
+  </form>
+</section>
+</main>
 
-            </div>
-        </section>
+<footer>
+  <span>© 2026 Smriti Notes</span>
+  <span>Write. Highlight. Pin. Connect.</span>
+  <span>Made with paper & pixels ♡</span>
+</footer>
 
-    </main>
+<script>
+const app=document.getElementById('notesApp');
+document.querySelectorAll('.theme-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    app.classList.toggle('dark',btn.dataset.theme==='dark');
+    app.classList.toggle('light',btn.dataset.theme==='light');
+  });
+});
 
+document.querySelectorAll('.sticky').forEach(sticky=>{
+  sticky.addEventListener('click',()=>{
+    sticky.animate([
+      {transform:'translateY(0) rotate(0deg) scale(1)'},
+      {transform:'translateY(-14px) rotate(0deg) scale(1.07)'},
+      {transform:'translateY(0) rotate(0deg) scale(1)'}
+    ],{duration:550,easing:'cubic-bezier(.2,.8,.2,1)'});
+  });
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
