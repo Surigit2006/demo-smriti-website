@@ -10,7 +10,7 @@
 :root{
   --paper:#fffdf7;
   --paper2:#f7edda;
-  --desk:#f4dfbd;
+  --desk:#FFFAF3;
   --ink:#272332;
   --muted:#665e70;
   --pink:#ff5f91;
@@ -31,9 +31,9 @@ html{scroll-behavior:smooth}
 body{
   margin:0;color:var(--ink);font-family:Nunito,sans-serif;
   background:
-    radial-gradient(circle at 15% 10%,rgba(255,255,255,.9),transparent 28%),
-    radial-gradient(circle at 85% 55%,rgba(255,236,195,.7),transparent 30%),
-    repeating-linear-gradient(0deg,rgba(100,70,30,.025) 0 1px,transparent 1px 5px),
+    radial-gradient(circle at 15% 10%,rgba(255,255,255,.92),transparent 28%),
+    radial-gradient(circle at 85% 55%,rgba(255,226,177,.25),transparent 30%),
+    repeating-linear-gradient(0deg,rgba(100,70,30,.012) 0 1px,transparent 1px 5px),
     var(--desk);
 }
 a{text-decoration:none;color:inherit}
@@ -368,21 +368,400 @@ footer{padding:25px 5vw 40px;display:flex;justify-content:space-between;font-siz
   <p class="hand" style="text-align:center;font-size:1.6rem">Click a sticky → it can take you back to the exact note where it came from.</p>
 </section>
 
-<section class="section" id="features">
+
+<section class="section feature-lab" id="features">
   <div class="section-title reveal">
-    <div class="kicker">the pencil case ✎</div>
-    <h2>Everything feels connected.</h2>
-    <p>Not another generic notes app — a workspace built around the way ideas actually move.</p>
+    <div class="kicker">open the notebook ♡</div>
+    <h2>See every feature before you use it.</h2>
+    <p>Each idea below is shown as a real product moment — not just an icon and a sentence.</p>
   </div>
-  <div class="feature-grid container">
-    <article class="feature"><div class="feature-icon">📌</div><h3>Sticky Canvas</h3><p>Pin notes, ideas and highlights on an infinite canvas.</p></article>
-    <article class="feature"><div class="feature-icon">🗒️</div><h3>Sticky Papers</h3><p>Add interactive sticky papers anywhere on your canvas.</p></article>
-    <article class="feature"><div class="feature-icon">🖍️</div><h3>In-Note Highlights</h3><p>Highlight important lines and turn them into sticky papers.</p></article>
-    <article class="feature"><div class="feature-icon">⌕</div><h3>One Click Jump</h3><p>Click a sticky to jump directly back to its original note.</p></article>
-    <article class="feature"><div class="feature-icon">🔗</div><h3>Organize Better</h3><p>Collections, tags and backlinks keep everything connected.</p></article>
+
+  <div class="feature-stage container">
+    <!-- FEATURE 1 -->
+    <article class="feature-demo reveal">
+      <div class="feature-copy">
+        <span class="feature-number">01</span>
+        <div class="feature-icon big yellow">📌</div>
+        <h3>Sticky Canvas</h3>
+        <p>
+          Turn scattered thoughts into a visual workspace. Drag ideas around,
+          group them, connect them and see the bigger picture without losing
+          the original note.
+        </p>
+        <div class="feature-points">
+          <span>↔ Drag & arrange</span><span>⌘ Connect ideas</span><span>＋ Add sticky</span>
+        </div>
+      </div>
+      <div class="visual-window">
+        <div class="window-top"><b>My Research Canvas</b><span>− □ ×</span></div>
+        <div class="mini-canvas">
+          <div class="mini-grid"></div>
+          <svg viewBox="0 0 600 350" preserveAspectRatio="none">
+            <path d="M135 120 C205 80 230 90 290 135" />
+            <path d="M325 145 C380 105 420 105 470 145" />
+            <path d="M215 235 C285 195 340 215 390 240" />
+          </svg>
+          <div class="mini-sticky ms-yellow" draggable="true">Research<br><small>Problem</small></div>
+          <div class="mini-sticky ms-pink" draggable="true">Hypothesis<br><small>What if?</small></div>
+          <div class="mini-sticky ms-blue" draggable="true">Experiment<br><small>Test this</small></div>
+          <div class="mini-sticky ms-purple" draggable="true">Results<br><small>Compare</small></div>
+          <div class="mini-sticky ms-green" draggable="true">Next Step<br><small>Build →</small></div>
+          <div class="canvas-cursor">✦</div>
+        </div>
+        <div class="demo-caption">Drag the colored papers — this is your idea space.</div>
+      </div>
+    </article>
+
+    <!-- FEATURE 2 -->
+    <article class="feature-demo reverse reveal">
+      <div class="feature-copy">
+        <span class="feature-number">02</span>
+        <div class="feature-icon big pink">🗒️</div>
+        <h3>Sticky Papers inside Notes</h3>
+        <p>
+          A normal note stays a normal note. But important thoughts can become
+          physical-looking sticky papers directly inside the page.
+        </p>
+        <div class="feature-points">
+          <span>✍ Write normally</span><span>🟨 Highlight</span><span>📌 Pin later</span>
+        </div>
+      </div>
+      <div class="visual-window paper-window">
+        <div class="window-top"><b>Research Notes — Chapter 4</b><span>☆</span></div>
+        <div class="lined-paper">
+          <div class="paper-date">18 AUG 2026</div>
+          <div class="hand paper-title">Progressive depth growth</div>
+          <p class="ink-writing">
+            The model can begin with a shallow architecture and
+            <span class="marker-yellow">grow deeper when plasticity is needed.</span>
+          </p>
+          <p class="ink-writing">Need to compare growth against a fixed-depth baseline.</p>
+          <div class="pencil-doodle">depth ↑<br>layer 12 → 16 → 20</div>
+          <div class="inside-sticky pink-note">
+            <b>Important finding</b>
+            <small>Plasticity should decide when the next layer is useful.</small>
+            <button class="tiny-pin">📌 Pin to Canvas</button>
+          </div>
+          <div class="inside-sticky yellow-note">
+            <b>TODO</b>
+            <small>Run ablation experiment</small>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FEATURE 3 -->
+    <article class="feature-demo reveal">
+      <div class="feature-copy">
+        <span class="feature-number">03</span>
+        <div class="feature-icon big blue">🖍️</div>
+        <h3>In-Note Highlights → Stickies</h3>
+        <p>
+          Highlight a sentence that matters. Smriti turns that exact thought
+          into a sticky paper, preserving its source so the canvas never becomes disconnected from your notes.
+        </p>
+        <div class="feature-points">
+          <span>🖍 Select text</span><span>✨ Highlight</span><span>→ Extract</span>
+        </div>
+      </div>
+      <div class="visual-window highlight-window">
+        <div class="window-top"><b>Literature Review</b><span>Highlight mode ●</span></div>
+        <div class="highlight-paper">
+          <div class="hand source-label">Paper #27 — Continual Learning</div>
+          <p>
+            Catastrophic forgetting can reduce the ability of a model to
+            <span class="selected-text">learn new information without damaging previously learned representations.</span>
+          </p>
+          <p>Plasticity and stability therefore need to be considered together.</p>
+          <div class="selection-popover">
+            <button>🖍 Highlight</button><button>📌 Make Sticky</button><button>⌁ Copy</button>
+          </div>
+          <div class="extracted-sticky">
+            <span class="pin-dot"></span>
+            <b>Key idea</b>
+            <p>Learn new information without damaging previous representations.</p>
+            <small>↗ Source: Literature Review • p. 12</small>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FEATURE 4 -->
+    <article class="feature-demo reverse reveal">
+      <div class="feature-copy">
+        <span class="feature-number">04</span>
+        <div class="feature-icon big green">⌕</div>
+        <h3>One-Click Jump Back</h3>
+        <p>
+          A canvas sticky is never an orphan. Clicking it opens the exact note,
+          page and highlighted passage it came from.
+        </p>
+        <div class="feature-points">
+          <span>↗ Source linked</span><span>◎ Exact location</span><span>← Back to canvas</span>
+        </div>
+      </div>
+      <div class="visual-window jump-window">
+        <div class="window-top"><b>Canvas → Source</b><span>↗ Open</span></div>
+        <div class="jump-flow">
+          <div class="jump-card canvas-card">
+            <span class="pin-dot"></span>
+            <b>Plasticity Trigger</b>
+            <p>Grow another layer when learning capacity falls.</p>
+            <small>Source linked ✓</small>
+          </div>
+          <div class="jump-arrow">→</div>
+          <div class="jump-card source-card">
+            <div class="source-top">Research Notes / 18 Aug / p. 7</div>
+            <div class="source-lines">
+              <span></span><span></span><span class="source-highlight"></span><span></span><span></span>
+            </div>
+            <div class="jump-tooltip">Opened exact source location ✓</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FEATURE 5 -->
+    <article class="feature-demo reveal">
+      <div class="feature-copy">
+        <span class="feature-number">05</span>
+        <div class="feature-icon big purple">🔗</div>
+        <h3>Collections, Tags & Backlinks</h3>
+        <p>
+          Your notes form a knowledge network. Collections keep projects tidy,
+          tags create flexible grouping, and backlinks show how ideas relate.
+        </p>
+        <div class="feature-points">
+          <span>🏷 Tags</span><span>📚 Collections</span><span>🔗 Backlinks</span>
+        </div>
+      </div>
+      <div class="visual-window network-window">
+        <div class="window-top"><b>Knowledge Graph</b><span>12 connections</span></div>
+        <div class="network">
+          <svg viewBox="0 0 600 330" preserveAspectRatio="none">
+            <path d="M300 160 L150 80 M300 160 L450 80 M300 160 L130 245 M300 160 L470 245 M150 80 L450 80 M130 245 L470 245"/>
+          </svg>
+          <div class="node central">Plasticity</div>
+          <div class="node n-a">Continual<br>Learning</div>
+          <div class="node n-b">Transformer</div>
+          <div class="node n-c">Experiment</div>
+          <div class="node n-d">Results</div>
+          <div class="network-tags"><span>#research</span><span>#LLM</span><span>#paper</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ALL-FEATURE MINI BOARD -->
+  <div class="section-title reveal all-demo-title">
+    <div class="kicker">put it all together</div>
+    <h2>A full Smriti Notes moment.</h2>
+    <p>Switch the theme. Click the cards. Imagine the final product.</p>
+  </div>
+
+  <div class="full-demo-shell container reveal">
+    <div class="demo-theme-bar">
+      <span class="demo-live">● LIVE CONCEPT DEMO</span>
+      <div>
+        <button class="theme-btn active" data-theme="light">☀ Light</button>
+        <button class="theme-btn" data-theme="dark">◐ Dark</button>
+      </div>
+    </div>
+
+    <div class="full-app" id="deepApp">
+      <aside class="deep-sidebar">
+        <div class="deep-logo">Smriti <i>Notes</i></div>
+        <button class="deep-new">＋ New Note</button>
+        <div class="deep-nav active">▣ All Notes <b>24</b></div>
+        <div class="deep-nav">☆ Pinned <b>8</b></div>
+        <div class="deep-nav">⌘ Canvas <b>12</b></div>
+        <div class="deep-nav">◈ Collections</div>
+        <div class="deep-label">RECENT</div>
+        <div class="deep-nav">Research ideas</div>
+        <div class="deep-nav">Literature review</div>
+        <div class="deep-nav">Experiment plan</div>
+      </aside>
+
+      <section class="deep-workspace">
+        <header class="deep-toolbar">
+          <div><b>Research Workspace</b><small>Last edited just now</small></div>
+          <div class="deep-actions"><button>⌕</button><button>↗</button><button>⋯</button><button class="share">Share</button></div>
+        </header>
+
+        <div class="deep-canvas">
+          <div class="deep-grid"></div>
+          <svg viewBox="0 0 900 550" preserveAspectRatio="none" class="deep-lines">
+            <path d="M180 160 C280 100 340 150 400 190"/>
+            <path d="M480 205 C560 130 650 130 720 180"/>
+            <path d="M200 390 C330 300 440 390 520 350"/>
+            <path d="M520 350 C610 300 680 370 750 350"/>
+          </svg>
+
+          <button class="deep-sticky ds1" data-label="Research Problem"><i>●</i><b>Research Problem</b><p>Can plasticity trigger progressive Transformer depth?</p><small>↗ 2 source notes</small></button>
+          <button class="deep-sticky ds2" data-label="Key Highlight"><i>●</i><b>Key Highlight</b><p>Learning capacity falls before the model fully saturates.</p><small>📌 From Literature Review</small></button>
+          <button class="deep-sticky ds3" data-label="Experiment"><i>●</i><b>Experiment</b><p>Compare fixed depth vs adaptive depth growth.</p><small>☑ baseline<br>☐ ablation<br>☐ analysis</small></button>
+          <button class="deep-sticky ds4" data-label="Result"><i>●</i><b>Result</b><p>Track loss, plasticity and retained capability.</p><small>↗ Open result note</small></button>
+          <button class="deep-sticky ds5" data-label="Next Step"><i>●</i><b>Next Step</b><p>Test whether growth restores learning ability.</p><small>#research #LLM</small></button>
+          <div class="deep-cursor">↖ drag me</div>
+        </div>
+      </section>
+
+      <aside class="deep-inspector">
+        <div class="inspect-head"><b id="selectedName">Key Highlight</b><span>☆</span></div>
+        <div class="inspect-preview">
+          <div class="mini-pin"></div>
+          <strong>Important highlight</strong>
+          <p>Learning capacity falls before the model fully saturates.</p>
+        </div>
+        <div class="inspect-action"><span>📌 Pin to Canvas</span><b>ON</b></div>
+        <div class="inspect-action"><span>↗ Source Note</span><b>Open</b></div>
+        <div class="inspect-action"><span>🔗 Connections</span><b>3</b></div>
+        <div class="inspect-action"><span>🏷 Tags</span><b>#research</b></div>
+        <div class="inspect-action"><span>⏰ Reminder</span><b>None</b></div>
+        <div class="inspector-color">
+          <small>Sticky color</small>
+          <div><i style="background:#ffe56e"></i><i style="background:#ffb5cb"></i><i style="background:#bde8ff"></i><i style="background:#c8efa4"></i><i style="background:#d6c0ff"></i></div>
+        </div>
+      </aside>
+    </div>
   </div>
 </section>
 
+<style>
+/* Deep feature visualizations */
+.feature-lab{padding-top:50px}
+.feature-stage{display:flex;flex-direction:column;gap:70px}
+.feature-demo{
+  display:grid;grid-template-columns:34% 66%;align-items:center;gap:28px;
+  padding:34px;background:rgba(255,255,255,.56);border:1px solid rgba(100,75,40,.1);
+  border-radius:22px;box-shadow:0 22px 50px rgba(75,53,25,.10);
+}
+.feature-demo.reverse{grid-template-columns:66% 34%}
+.feature-demo.reverse .feature-copy{order:2}
+.feature-demo.reverse .visual-window{order:1}
+.feature-copy{padding:15px 15px 15px 10px}
+.feature-number{font-family:Caveat;color:#ee567b;font-size:1.25rem}
+.feature-icon.big{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;font-size:1.55rem;margin:8px 0 16px}
+.feature-icon.yellow{background:#ffe56e}.feature-icon.pink{background:#ffb5cb}.feature-icon.blue{background:#bde8ff}.feature-icon.green{background:#c8efa4}.feature-icon.purple{background:#d6c0ff}
+.feature-copy h3{font-size:2.2rem;margin-bottom:12px}
+.feature-copy>p{line-height:1.7;color:#655d68;max-width:40ch}
+.feature-points{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.feature-points span{background:#fff;padding:7px 10px;border-radius:20px;font-size:.72rem;font-weight:800;box-shadow:0 4px 9px #3b2b1710}
+
+/* windows */
+.visual-window{position:relative;background:#f7f7f5;border:7px solid #292b31;border-radius:17px;box-shadow:0 25px 35px #3b2b1722;overflow:hidden;min-height:390px}
+.window-top{height:39px;background:#30323a;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 15px;font-size:.72rem}
+.mini-canvas{height:350px;position:relative;background:#fffaf3;overflow:hidden}
+.mini-grid{position:absolute;inset:0;background-image:radial-gradient(#9d8e761c 1px,transparent 1px);background-size:19px 19px}
+.mini-canvas svg{position:absolute;inset:0;width:100%;height:100%}
+.mini-canvas path{stroke:#777;stroke-width:2;fill:none;stroke-dasharray:6 7}
+.mini-sticky{
+  position:absolute;width:125px;min-height:100px;padding:13px;font-family:Caveat;font-size:1.05rem;font-weight:700;
+  border-radius:2px;box-shadow:0 11px 18px #3b2b1730;transition:.25s
+}
+.mini-sticky:hover{transform:translateY(-7px) rotate(0)!important;z-index:9}
+.mini-sticky small{font-family:Nunito;font-size:.65rem;font-weight:600;display:block;margin-top:7px}
+.ms-yellow{left:8%;top:17%;background:#ffe56e;transform:rotate(-4deg)}.ms-pink{left:33%;top:10%;background:#ffb5cb;transform:rotate(4deg)}.ms-blue{right:8%;top:18%;background:#bde8ff;transform:rotate(-3deg)}.ms-purple{left:21%;bottom:11%;background:#d6c0ff;transform:rotate(3deg)}.ms-green{right:20%;bottom:8%;background:#c8efa4;transform:rotate(-5deg)}
+.canvas-cursor{position:absolute;left:46%;top:48%;font-size:2rem;animation:cursorFloat 2s infinite ease-in-out}
+@keyframes cursorFloat{50%{transform:translate(10px,-7px)}}
+.demo-caption{height:36px;background:#fff;padding:9px 14px;font-size:.7rem;color:#766d61}
+
+/* paper */
+.paper-window{min-height:430px}
+.lined-paper{
+  position:relative;height:390px;padding:35px 34px;
+  background:repeating-linear-gradient(to bottom,transparent 0 27px,rgba(80,75,60,.09) 28px 29px),#fffef9;
+  overflow:hidden
+}
+.paper-date{position:absolute;right:28px;top:20px;font-family:Caveat;color:#a09588}
+.paper-title{font-size:2rem;font-weight:700;margin-bottom:14px}
+.ink-writing{font-family:Caveat;font-size:1.35rem;line-height:1.75;max-width:70%}
+.marker-yellow{background:linear-gradient(transparent 30%,#ffe45c 30% 82%,transparent 82%)}
+.pencil-doodle{position:absolute;left:35px;bottom:38px;font-family:Caveat;color:#777;font-size:1.35rem;transform:rotate(-5deg)}
+.inside-sticky{position:absolute;width:135px;min-height:120px;padding:14px;font-family:Caveat;box-shadow:0 12px 19px #3b2b1728}
+.inside-sticky b{font-size:1.05rem}.inside-sticky small{display:block;font-family:Nunito;font-size:.64rem;line-height:1.35;margin-top:8px}
+.pink-note{right:27px;top:73px;background:#ffb5cb;transform:rotate(5deg)}
+.yellow-note{right:45px;bottom:28px;background:#ffe56e;transform:rotate(-4deg)}
+.tiny-pin{border:0;background:#fff8;margin-top:10px;border-radius:12px;padding:4px 7px;font-size:.57rem}
+
+/* highlight */
+.highlight-window{min-height:430px}
+.highlight-paper{height:390px;padding:35px 32px;background:#fffef8;position:relative}
+.source-label{font-size:1.35rem;margin-bottom:18px}
+.highlight-paper>p{font-family:Caveat;font-size:1.35rem;line-height:1.65;max-width:70%}
+.selected-text{background:#ffe45c;padding:2px 4px;box-shadow:0 1px 0 #d8bc31}
+.selection-popover{position:absolute;left:25%;top:180px;background:#2d2e34;color:#fff;padding:7px;border-radius:9px;display:flex;gap:5px;box-shadow:0 10px 20px #0004}
+.selection-popover button{border:0;background:#fff;color:#28232c;border-radius:5px;padding:6px 8px;font-size:.58rem;font-weight:800}
+.extracted-sticky{position:absolute;right:25px;bottom:25px;width:180px;min-height:125px;background:#bde8ff;padding:16px;box-shadow:0 12px 20px #3b2b1730;transform:rotate(-4deg);font-family:Caveat}
+.extracted-sticky p{font-size:1rem!important;margin:7px 0;font-family:Caveat!important;line-height:1.25!important}
+.extracted-sticky small{font-family:Nunito;font-size:.58rem}.pin-dot{position:absolute;top:-7px;left:50%;width:11px;height:11px;background:#ed5b65;border-radius:50%}
+
+/* jump */
+.jump-window{min-height:390px}
+.jump-flow{height:350px;background:#fffaf3;display:flex;align-items:center;justify-content:center;gap:22px;padding:25px}
+.jump-card{position:relative;width:210px;min-height:145px;padding:22px;box-shadow:0 12px 20px #3b2b1730}
+.canvas-card{background:#ffe56e;transform:rotate(-4deg);font-family:Caveat}.canvas-card p{font-size:1rem}
+.source-card{background:#fff;transform:rotate(3deg);border:1px solid #ddd;font-family:Nunito}
+.source-top{font-size:.65rem;color:#777;margin-bottom:20px}.source-lines{display:flex;flex-direction:column;gap:10px}.source-lines span{height:6px;background:#ddd;width:90%;border-radius:4px}.source-lines span:nth-child(2){width:70%}.source-lines span:nth-child(4){width:75%}.source-highlight{background:#ffe45c!important;width:92%!important;height:11px!important}
+.jump-arrow{font-size:2.5rem;color:#ed5f83;animation:arrowPulse 1.7s infinite}
+@keyframes arrowPulse{50%{transform:translateX(8px)}}
+.jump-tooltip{position:absolute;bottom:-13px;right:-15px;background:#5cc58a;color:#fff;padding:7px 10px;border-radius:8px;font-size:.58rem;box-shadow:0 5px 10px #0002}
+
+/* network */
+.network-window{min-height:390px}
+.network{position:relative;height:350px;background:#fffaf3;overflow:hidden}
+.network svg{position:absolute;inset:0;width:100%;height:100%}.network path{stroke:#aaa;stroke-width:2;fill:none;stroke-dasharray:5 5}
+.node{position:absolute;display:grid;place-items:center;text-align:center;border-radius:50%;font-family:Caveat;font-weight:700;box-shadow:0 8px 14px #3b2b1725}
+.central{left:40%;top:39%;width:105px;height:75px;background:#ffe56e}.n-a{left:12%;top:13%;width:100px;height:65px;background:#ffb5cb}.n-b{right:12%;top:14%;width:100px;height:65px;background:#bde8ff}.n-c{left:10%;bottom:14%;width:95px;height:65px;background:#c8efa4}.n-d{right:10%;bottom:13%;width:95px;height:65px;background:#d6c0ff}
+.network-tags{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px}.network-tags span{background:#fff;border:1px solid #ddd;border-radius:15px;padding:5px 8px;font-size:.58rem}
+
+/* full app */
+.all-demo-title{margin-top:90px}
+.full-demo-shell{background:rgba(255,255,255,.58);padding:18px;border-radius:23px;box-shadow:0 25px 60px #6b49251c;border:1px solid #80623b18}
+.demo-theme-bar{display:flex;justify-content:space-between;align-items:center;padding:0 5px 15px}.demo-live{font-size:.65rem;font-weight:900;color:#ef5477;letter-spacing:.08em}
+.full-app{display:grid;grid-template-columns:185px 1fr 205px;min-height:600px;border-radius:16px;overflow:hidden;background:#fff;color:#29242f;box-shadow:0 15px 30px #3b2b1726}
+.deep-sidebar{padding:22px 15px;background:#fbf7ed;border-right:1px solid #0000000d}
+.deep-logo{font-family:Fredoka;font-size:1.25rem;margin-bottom:20px}.deep-logo i{font-family:Caveat;color:#ef5c84;font-size:1.5rem}
+.deep-new{width:100%;border:0;background:#ff5f91;color:#fff;padding:10px;border-radius:9px;font-weight:900;margin-bottom:13px}
+.deep-nav{padding:9px;border-radius:7px;font-size:.72rem;margin:3px 0}.deep-nav b{float:right;color:#aaa}.deep-nav.active{background:#ffe8ef;color:#dc3969;font-weight:900}
+.deep-label{font-size:.58rem;color:#aaa;margin:20px 8px 5px;letter-spacing:.1em}
+.deep-workspace{background:#fffaf3;min-width:0}
+.deep-toolbar{height:65px;background:#fff;border-bottom:1px solid #0001;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}.deep-toolbar small{display:block;color:#999;font-size:.58rem;margin-top:3px}.deep-actions{display:flex;gap:5px}.deep-actions button{border:1px solid #ddd;background:#fff;border-radius:7px;padding:6px 8px;font-size:.7rem}.deep-actions .share{background:#ff5f91;color:#fff;border-color:#ff5f91}
+.deep-canvas{height:535px;position:relative;overflow:hidden}.deep-grid{position:absolute;inset:0;background-image:radial-gradient(#8f7e641c 1px,transparent 1px);background-size:22px 22px}
+.deep-lines{position:absolute;inset:0;width:100%;height:100%}.deep-lines path{fill:none;stroke:#888;stroke-width:2;stroke-dasharray:6 7}
+.deep-sticky{position:absolute;width:175px;min-height:150px;border:0;padding:18px;text-align:left;font-family:Caveat;box-shadow:0 15px 23px #3b2b1733;transition:.25s;cursor:pointer;color:#29242f}.deep-sticky:hover{transform:translateY(-9px) rotate(0)!important;z-index:20;box-shadow:0 23px 30px #3b2b1750}.deep-sticky i{position:absolute;top:-7px;left:50%;width:11px;height:11px;border-radius:50%;background:#ed5b65;box-shadow:0 3px 5px #0004}.deep-sticky b{font-size:1.15rem}.deep-sticky p{font-size:.95rem;margin:9px 0;line-height:1.3}.deep-sticky small{font-family:Nunito;font-size:.58rem}
+.ds1{left:8%;top:10%;background:#ffe56e;transform:rotate(-4deg)}.ds2{left:38%;top:8%;background:#ffb5cb;transform:rotate(3deg)}.ds3{right:7%;top:15%;background:#bde8ff;transform:rotate(-3deg)}.ds4{left:21%;bottom:10%;background:#c8efa4;transform:rotate(4deg)}.ds5{right:20%;bottom:9%;background:#d6c0ff;transform:rotate(-4deg)}
+.deep-cursor{position:absolute;left:47%;top:50%;font-family:Caveat;font-size:1.4rem;color:#777;animation:cursorFloat 2s infinite}
+.deep-inspector{background:#fff;padding:20px 15px;border-left:1px solid #0001}.inspect-head{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:15px}.inspect-preview{background:#bde8ff;padding:14px;min-height:120px;box-shadow:0 9px 14px #0001;font-family:Caveat;position:relative;transform:rotate(-2deg);margin-bottom:18px}.inspect-preview p{font-size:.9rem;margin:8px 0}.mini-pin{position:absolute;top:-6px;left:50%;width:10px;height:10px;border-radius:50%;background:#ed5b65}.inspect-action{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #0001;font-size:.65rem}.inspect-action b{color:#e75a7f}.inspector-color{padding-top:15px;font-size:.65rem}.inspector-color>div{display:flex;gap:6px;margin-top:8px}.inspector-color i{width:20px;height:20px;border-radius:50%;border:1px solid #aaa}
+
+/* Dark mode for deep visualization, while preserving bright sticky colors */
+.full-app.dark{background:#191b20;color:#eee}
+.full-app.dark .deep-sidebar,.full-app.dark .deep-inspector{background:#20232a;border-color:#ffffff12}
+.full-app.dark .deep-nav{color:#bbb}.full-app.dark .deep-nav.active{background:#3b2831;color:#ff91b1}
+.full-app.dark .deep-workspace{background:#1a1d22}.full-app.dark .deep-toolbar{background:#20232a;color:#fff;border-color:#ffffff12}
+.full-app.dark .deep-actions button{background:#2b2e36;color:#eee;border-color:#ffffff14}
+.full-app.dark .deep-canvas{background:#1a1d22}.full-app.dark .deep-grid{background-image:radial-gradient(#ffffff19 1px,transparent 1px)}
+.full-app.dark .deep-lines path{stroke:#72757d}.full-app.dark .inspect-action{border-color:#ffffff12}.full-app.dark .inspect-preview{color:#29242f}
+.full-app.dark .deep-logo{color:#fff}
+
+/* dark mode for the individual feature windows */
+.feature-dark-demo{background:#1c1e23!important}
+.feature-dark-demo .window-top{background:#101115}
+.feature-dark-demo .mini-canvas,.feature-dark-demo .network,.feature-dark-demo .jump-flow{background:#24272d}
+.feature-dark-demo .mini-grid{background-image:radial-gradient(#ffffff18 1px,transparent 1px)}
+.feature-dark-demo .lined-paper,.feature-dark-demo .highlight-paper,.feature-dark-demo .source-card{background:#ebe4d4;color:#28242c}
+.feature-dark-demo .demo-caption{background:#202229;color:#bbb}
+
+@media(max-width:1000px){
+  .feature-demo,.feature-demo.reverse{grid-template-columns:1fr}.feature-demo.reverse .feature-copy,.feature-demo.reverse .visual-window{order:initial}
+  .full-app{grid-template-columns:155px 1fr}.deep-inspector{display:none}
+}
+@media(max-width:650px){
+  .feature-demo{padding:20px}.feature-copy h3{font-size:1.8rem}.visual-window{min-height:330px}.mini-canvas{height:290px}
+  .mini-sticky{width:95px;min-height:80px;font-size:.85rem}.inside-sticky{width:115px}.feature-points span{font-size:.62rem}
+  .full-app{grid-template-columns:1fr}.deep-sidebar{display:none}.deep-canvas{height:520px}.deep-sticky{width:135px;min-height:120px}.ds1{left:4%}.ds2{left:38%}.ds3{right:3%}.ds4{left:8%}.ds5{right:7%}
+}
+</style>
 <section class="cta" id="coming">
   <div class="kicker">something is being written...</div>
   <h2>Your ideas deserve a beautiful home.<br><span>Coming Soon!</span></h2>
@@ -402,12 +781,45 @@ footer{padding:25px 5vw 40px;display:flex;justify-content:space-between;font-siz
 
 <script>
 const app=document.getElementById('notesApp');
+const deepApp=document.getElementById('deepApp');
+
 document.querySelectorAll('.theme-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
-    document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    app.classList.toggle('dark',btn.dataset.theme==='dark');
-    app.classList.toggle('light',btn.dataset.theme==='light');
+    const theme=btn.dataset.theme;
+    document.querySelectorAll('.theme-btn').forEach(b=>b.classList.toggle('active',b.dataset.theme===theme));
+    if(app){
+      app.classList.toggle('dark',theme==='dark');
+      app.classList.toggle('light',theme==='light');
+    }
+    if(deepApp){
+      deepApp.classList.toggle('dark',theme==='dark');
+      deepApp.classList.toggle('light',theme==='light');
+    }
+  });
+});
+
+document.querySelectorAll('.deep-sticky').forEach(sticky=>{
+  sticky.addEventListener('click',()=>{
+    document.querySelectorAll('.deep-sticky').forEach(s=>s.classList.remove('selected'));
+    sticky.classList.add('selected');
+    const label=sticky.dataset.label || 'Selected Sticky';
+    const target=document.getElementById('selectedName');
+    if(target) target.textContent=label;
+    sticky.animate([
+      {transform:'translateY(0) rotate(0deg) scale(1)'},
+      {transform:'translateY(-12px) rotate(0deg) scale(1.06)'},
+      {transform:'translateY(0) rotate(0deg) scale(1)'}
+    ],{duration:520,easing:'cubic-bezier(.2,.8,.2,1)'});
+  });
+});
+
+document.querySelectorAll('.mini-sticky').forEach(sticky=>{
+  sticky.addEventListener('click',()=>{
+    sticky.animate([
+      {transform:'translateY(0) scale(1)'},
+      {transform:'translateY(-8px) scale(1.06)'},
+      {transform:'translateY(0) scale(1)'}
+    ],{duration:420,easing:'ease-out'});
   });
 });
 
