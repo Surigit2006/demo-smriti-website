@@ -766,10 +766,15 @@ footer{padding:25px 5vw 40px;display:flex;justify-content:space-between;font-siz
   <div class="kicker">something is being written...</div>
   <h2>Your ideas deserve a beautiful home.<br><span>Coming Soon!</span></h2>
   <p>Smriti Notes is on its way. Stay tuned for something that feels like your favorite notebook.</p>
-  <form class="email" onsubmit="event.preventDefault();this.querySelector('button').textContent='You’re on the list ✓'">
-    <input type="email" required placeholder="Enter your email">
-    <button>♧ Notify Me</button>
-  </form>
+ <form class="email" id="emailForm">
+    <input
+        type="email"
+        id="email"
+        required
+        placeholder="Enter your email"
+    >
+    <button type="submit">♧ Notify Me</button>
+</form>
 </section>
 </main>
 
@@ -837,6 +842,40 @@ const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.getElementById("emailForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const button = e.target.querySelector("button");
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+
+    try {
+        const response = await fetch("http://localhost:5000/api/subscribe", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            button.textContent = "You're on the list ✓";
+            document.getElementById("email").value = "";
+        } else {
+            throw new Error(data.message);
+        }
+
+    } catch (error) {
+        console.error(error);
+        button.disabled = false;
+        button.textContent = "Try Again";
+        alert("Something went wrong. Please try again.");
+    }
+});
 </script>
 </body>
 </html>
